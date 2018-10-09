@@ -59,7 +59,10 @@ server.put('/api/courses/:id', (req, res) => {
   db('courses')
     .where({ id })
     .update(changes)
-    .then(count => res.status(200).json(count))
+    .then(count => {
+      if (!count || count <1) return res.status(404).json({ message: "No records found to update." })
+      return res.status(200).json(count)
+    })
     .catch(err => res.status(500).json(err))
 })
 
