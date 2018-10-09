@@ -67,5 +67,16 @@ server.put('/api/courses/:id', (req, res) => {
 })
 
 // DELETE COURSES
+server.delete('/api/courses/:id', (req, res) => {
+  const { id } = req.params
+  db('courses')
+    .where({ id })
+    .delete(id)
+    .then(deletedCourse => {
+      if (!deletedCourse || deletedCourse <1) return res.status(404).json({ message: "No records found to delete." })
+      return res.status(202).json(deletedCourse)
+    })
+    .catch(err => res.status(500).json(err))
+})
 
 server.listen(9000, () => console.log('\nAPI running on 9k\n'))
