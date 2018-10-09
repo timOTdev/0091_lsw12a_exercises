@@ -1,0 +1,28 @@
+{
+  "name": "lsw12-exercise1",
+  "version": "1.0.0",
+  "description": "Lambda School Week 12: Data Persistence II Demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timh1203/lsw12-exercise1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timh1203/lsw12-exercise1/issues"
+  },
+  "homepage": "https://github.com/timh1203/lsw12-exercise1#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "knex": "^0.15.2",
+    "sqlite3": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
