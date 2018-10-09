@@ -53,6 +53,15 @@ server.post('/api/courses', (req, res) => {
 })
 
 // UPDATE COURSES
+server.put('/api/courses/:id', (req, res) => {
+  const { id } = req.params
+  const changes = req.body
+  db('courses')
+    .where({ id })
+    .update(changes)
+    .then(count => res.status(200).json(count))
+    .catch(err => res.status(500).json(err))
+})
 
 // DELETE COURSES
 
