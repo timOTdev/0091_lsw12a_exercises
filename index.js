@@ -9,6 +9,7 @@ const server = express()
 server.use(helmet())
 server.use(express.json())
 
+// GET ROOT
 server.get('/', (req, res) => {
   res.send("It's Alive")
 })
@@ -20,10 +21,31 @@ server.get('/api/courses', (req, res) => {
     .catch(err => res.status(500).json(err))
 })
 
+//  GET COURSE BY ID
+server.get('/api/courses/:id', (req, res) => {
+  const { id } = req.params
+  // regular method
+  db('courses')
+    .where({ id })
+    .then(course => res.status(200).json(course))
+    .catch(err => res.status(404).json(err))
+
+  // async method, needs async next to homies
+  // try {
+  //   const course = await db('courses').where({id}).first()
+  //   if (course) {
+  //     res.status(200).json(course)
+  //   }
+  //   else {
+  //     res.status(404).json({ message: 'Course not found' })
+  //   }
+  // }
+  // catch (err) {res.status(500).json(err)}
+})
+
 // CREATE COURSES
 server.post('/api/courses', (req, res) => {
   const course = req.body
-
   db.insert(course)
     .into('courses')
     .then(ids => res.status(201).json(ids))
